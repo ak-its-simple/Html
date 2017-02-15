@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index Page</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="">
+<form>
+Enter any movie name : <input type="text" placeholder="Eg. Hum aapke hain kon" ng-model="movie"><br/>
+<h1>You entered: {{movie}} </h1><br/>
+
+Check this box : <input type="checkbox" ng-model="check"><br/>
+<h1 ng-show="check">U click on it successfully!!!!!!!!!!!</h1><br/>
+
+<input type="radio" ng-model="radiobutton" value="dogs">Dogs
+<input type="radio" ng-model="radiobutton" value="cats">Cats
+<div ng-switch="radiobutton">
+	<div ng-switch-when="dogs">
+		<h1>welcome to dogs world</h1>
+	</div>
+	<div ng-switch-when="cats">
+		<h1>welcome to cats world</h1>
+	</div>
+</div><br/>
+
+<select ng-model="selection">
+	<option value="">
+	<option value="dog">Dogs
+	<option value="cat">Cats
+</select>
+<div ng-switch="selection">
+	<div ng-switch-when="dog">
+		<h1>welcome to dogs world</h1>
+	</div>
+	<div ng-switch-when="cat">
+		<h1>welcome to cats world</h1>
+	</div>
+</div><br/>
+</form>
+</div>
+</body>
+</html>
