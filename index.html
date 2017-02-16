@@ -1,66 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Index</title>
-	<style type="text/css">
-		ul{
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: #333333;
-		}
-		li{
-			float:left;
-		}
-		li a{
- 			display: block;
- 			color: white;
- 			text-align: center;
- 			padding: 25px;
- 			text-decoration: none;
-		}
-		li a:hover{
-			background-color: #111111;
-		}
-		#p1{
-			float:right;
-		}
-		table,tr,td{
-			border: 2px solid black;
-			text-align:center;
-			padding: 10px;
-			margin: 10px;
-		}
-
-		</style>
+	<title>Show Movie Details</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 </head>
 <body>
 
-<table align="center">
-
-<th> Date And Time</th>
-<tr>
-<td><button type="button" onclick="document.getElementById('demo').innerHTML= Date()">Click To Dispaly Date and Time </button>
-<p id="demo"></p>
-</td>
-</tr>
-
-</table>
-
-<ul>
-	<li><a href="#home">Home</a></li>
-	<li><a href="#news">News</a></li>
-	<li><a href="#contact">Contact</a></li>
-	<li><a href="#about">About</a></li>
-	<li id ="p1"><a href="#signin">SignIn</a></li>
-</ul>
-
-<iframe src="http://www.w3schools.com/" height=400px width="100%"
+	<div ng-app="myapp" ng-controller="myctrl">
+	<form>
+		<input type="text" ng-model="search" ng-model-options="{ debounce: 800 }" placeholder="Enter full movie name" /><br/><br/>
+		<button ng-click="click($event)">Submit</button>
+		
+		</form>
+	</div>
 	
-</iframe>
+<script type="text/javascript">
+	var app=angular.module('myapp', []);
+	app.controller('myctrl',function($scope,$http){
 
+		$scope.$watch('search',function(){
+			$scope.click=function(event);
+		});
+		
 
+		function fetch(){
+			$http.get("https://www.omdbapi.com/?" + $scope.search )
+        .then(function(response) {
+          $scope.details = response.data;
+        });
+    }
 
+    $scope.select = function() {
+      this.setSelectionRange(0, this.value.length);
+    }
+	});
+</script>
 </body>
 </html>
