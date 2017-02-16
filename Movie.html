@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show Movie Details</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+
+	<div ng-app="myapp" ng-controller="myctrl">
+	<form>
+		<input type="text" ng-model="search" ng-model-options="{ debounce: 800 }" placeholder="Enter full movie name" /><br/><br/>
+		<button ng-click="click($event)">Submit</button>
+		
+		</form>
+	</div>
+	
+<script type="text/javascript">
+	var app=angular.module('myapp', []);
+	app.controller('myctrl',function($scope,$http){
+
+		$scope.$watch('search',function(){
+			$scope.click=function(event);
+		});
+		
+
+		function fetch(){
+			$http.get("https://www.omdbapi.com/?" + $scope.search )
+        .then(function(response) {
+          $scope.details = response.data;
+        });
+    }
+
+    $scope.select = function() {
+      this.setSelectionRange(0, this.value.length);
+    }
+	});
+</script>
+</body>
+</html>
