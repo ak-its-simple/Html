@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form name="myform" action="" method="GET">
+<input type="text" name="inputbox" value=""><br>
+<button type="submit" onclick="UserAction()">Search</button>
+</form>
+
+<script type="text/javascript">
+	function UserAction(){
+		var result= new XMLHttpRequest();
+		result.open("POST", "https://www.omdbapi.com/?", false);
+		result.setRequestHeader("Content-type", "application/json");
+		result.send();
+		var response=JSON.parse(result.responseText);
+}
+</script>
+</body>
+</html>
+
