@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Controller Practice</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<form>
+	Enter any text:- <input type="text" ng-model="usecontroller">
+</form>
+You entered: {{usecontroller}}
+</div>
+
+<script>
+	var app=angular.module('myApp', []);
+	app.controller('myCtrl',function($scope)
+	{
+		$scope.usecontroller="enter any text";
+	});
+
+</script>
+
+</body>
+</html>
