@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show Movie Details</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+
+  <div ng-app="myapp" ng-controller="myctrl">
+  <form>
+    <input type="text" ng-model="search" placeholder="Enter full movie name" /><br/><br/>
+    <button ng-click="click(search)">Submit</button>
+    <img ng-src={{imgSource}}></img>
+    
+    </form>
+  </div>
+  
+<script type="text/javascript">
+  var app=angular.module('myapp', []);
+  app.controller('myctrl',function($scope,$http){
+    
+    
+    $scope.click=function(search){
+      $http.get("https://www.omdbapi.com/?s="+search)
+        .then(function(response) {
+          console.log(response);
+          $scope.details = response.data;
+   if(response.data.Response)
+   {
+		$scope.imgSource=$scope.details.Search[0].Poster;
+
+}
+        });
+    }
+    });
+ 
+</script>
+</body>
+</html>
